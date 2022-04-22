@@ -10,7 +10,7 @@ const SellerRoute = () => {
   ) : user.type === 'seller' ? (
     <Outlet />
   ) : (
-    <Navigate to='/profile' />
+    <Navigate to='/' />
   )
 }
 

@@ -10,7 +10,7 @@ const AdminRoute = () => {
   ) : user.type === 'admin' ? (
     <Outlet />
   ) : (
-    <Navigate to='/profile' />
+    <Navigate to='/' />
   )
 }
 

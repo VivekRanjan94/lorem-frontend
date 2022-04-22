@@ -11,11 +11,11 @@ import PublicRoute from './Components/Routes/PublicRoute'
 import AdminRoute from './Components/Routes/AdminRoute'
 import SellerRoute from './Components/Routes/SellerRoute'
 import CustomerRoute from './Components/Routes/CustomerRoute'
+import Home from './Components/Routes/Home'
 
 // Pages
 import Login from './Pages/Auth/Login'
 import Register from './Pages/Auth/Register'
-import Profile from './Pages/Profile'
 import NotFound from './Pages/NotFound'
 
 // User Specific Pages
@@ -34,12 +34,12 @@ const App = () => {
         <UserProvider>
           <AuthProvider>
             <Routes>
+              <Route path='/' element={<Home />} />
               <Route path='/' element={<Navigate to='/login' />} />
               <Route element={<PublicRoute />}>
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
               </Route>
-              <Route path='/profile' element={<Profile />} />
               <Route element={<AdminRoute />}>
                 <Route path='/admin-home' element={<AdminHome />} />
               </Route>

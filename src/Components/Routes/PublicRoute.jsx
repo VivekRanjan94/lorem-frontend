@@ -5,7 +5,7 @@ import { useUser } from '../Contexts/UserContext'
 const PublicRoute = () => {
   const { user } = useUser()
 
-  return user ? <Navigate to='/login' /> : <Outlet />
+  return user ? <Navigate to='/' /> : <Outlet />
 }
 
 export default PublicRoute

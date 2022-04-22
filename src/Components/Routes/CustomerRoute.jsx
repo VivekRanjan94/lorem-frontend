@@ -10,7 +10,7 @@ const CustomerRoute = () => {
   ) : user.type === 'customer' ? (
     <Outlet />
   ) : (
-    <Navigate to='/profile' />
+    <Navigate to='/' />
   )
 }
 
