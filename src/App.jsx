@@ -1,19 +1,27 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom'
 
-// Private Route handlers
-import LoginRoute from './Components/Routes/LoginRoute'
+// Routes
+import PublicRoute from './Components/Routes/PublicRoute'
 import AdminRoute from './Components/Routes/AdminRoute'
 import SellerRoute from './Components/Routes/SellerRoute'
 import CustomerRoute from './Components/Routes/CustomerRoute'
-import NotFound from './Pages/NotFound'
 
-// Route Pages
+// Pages
 import Login from './Pages/Auth/Login'
 import Register from './Pages/Auth/Register'
-import Customer from './Switch/Customer'
-import Seller from './Switch/Seller'
-import Admin from './Switch/Admin'
+import Profile from './Pages/Profile'
+import NotFound from './Pages/NotFound'
+
+// User Specific Pages
+import AdminHome from './Pages/Admin/Home'
+import CustomerHome from './Pages/Customer/Home'
+import SellerHome from './Pages/Seller/Home'
 
 // Contexts
 import { UserProvider } from './Components/Contexts/UserContext'
@@ -25,14 +33,24 @@ const App = () => {
       <Router>
         <UserProvider>
           <AuthProvider>
-            <Switch>
-              <LoginRoute exact path='/' component={Login} />
-              <Route path='/register' component={Register} />
-              <CustomerRoute path='/c' component={Customer} />
-              <SellerRoute path='/s' component={Seller} />
-              <AdminRoute path='/a' component={Admin} />
-              <Route path='*' component={NotFound} />
-            </Switch>
+            <Routes>
+              <Route path='/' element={<Navigate to='/login' />} />
+              <Route element={<PublicRoute />}>
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
+              </Route>
+              <Route path='/profile' element={<Profile />} />
+              <Route element={<AdminRoute />}>
+                <Route path='/admin-home' element={<AdminHome />} />
+              </Route>
+              <Route element={<CustomerRoute />}>
+                <Route path='/customer-home' element={<CustomerHome />} />
+              </Route>
+              <Route element={<SellerRoute />}>
+                <Route path='/seller-home' element={<SellerHome />} />
+              </Route>
+              <Route path='*' element={<NotFound />} />
+            </Routes>
           </AuthProvider>
         </UserProvider>
       </Router>
