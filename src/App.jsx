@@ -18,10 +18,21 @@ import Login from './Pages/Auth/Login'
 import Register from './Pages/Auth/Register'
 import NotFound from './Pages/NotFound'
 
-// User Specific Pages
+// Admin Pages
 import AdminHome from './Pages/Admin/Home'
+import AdminOrders from './Pages/Admin/Orders'
+import Users from './Pages/Admin/Users'
+
+// Customer Pages
 import CustomerHome from './Pages/Customer/Home'
+import Cart from './Pages/Customer/Cart'
+import Wishlist from './Pages/Customer/Wishlist'
+
+// Seller Pages
 import SellerHome from './Pages/Seller/Home'
+import SellerOrders from './Pages/Seller/Orders'
+import Products from './Pages/Seller/Products'
+import Add from './Pages/Seller/Add'
 
 // Contexts
 import { UserProvider } from './Components/Contexts/UserContext'
@@ -42,12 +53,19 @@ const App = () => {
               </Route>
               <Route element={<AdminRoute />}>
                 <Route path='/admin-home' element={<AdminHome />} />
+                <Route path='/admin-orders' element={<AdminOrders />} />
+                <Route path='/users' element={<Users />} />
               </Route>
               <Route element={<CustomerRoute />}>
                 <Route path='/customer-home' element={<CustomerHome />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/wishlist' element={<Wishlist />} />
               </Route>
               <Route element={<SellerRoute />}>
                 <Route path='/seller-home' element={<SellerHome />} />
+                <Route path='/add-product' element={<Add />} />
+                <Route path='/seller-orders' element={<SellerOrders />} />
+                <Route path='/products' element={<Products />} />
               </Route>
               <Route path='*' element={<NotFound />} />
             </Routes>
