@@ -38,6 +38,9 @@ import Add from './Pages/Seller/Add'
 import { UserProvider } from './Components/Contexts/UserContext'
 import { AuthProvider } from './Components/Contexts/AuthContext'
 
+// Styles
+import './Styles/styles.scss'
+
 const App = () => {
   return (
     <>

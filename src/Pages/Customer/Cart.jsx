@@ -9,18 +9,23 @@ const Cart = () => {
   const [error, setError] = useState('')
 
   const getCart = async () => {
-    const response = Axios({
-      method: 'GET',
-      url: `${process.env.REACT_APP_SERVER_URL}/get-cart`,
-      data: { user_id: user.id },
-    })
+    try {
+      const response = Axios({
+        method: 'GET',
+        url: `${process.env.REACT_APP_SERVER_URL}/get-cart`,
+        data: { user_id: user.id },
+      })
 
-    const data = response.data
+      const data = response.data
 
-    if (data.success) {
-      setCart(data.cart)
-    } else {
-      setError('Could not get cart')
+      if (data.success) {
+        setCart(data.cart)
+      } else {
+        setError('Could not get cart')
+      }
+    } catch (e) {
+      setError(e)
+      console.error(e)
     }
   }
 

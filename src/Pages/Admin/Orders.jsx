@@ -6,17 +6,22 @@ const Orders = () => {
   const [error, setError] = useState('')
 
   const getOrders = async () => {
-    const response = await Axios({
-      method: 'GET',
-      url: `${process.env.REACT_APP_SERVER_URL}/get-all-orders`,
-    })
+    try {
+      const response = await Axios({
+        method: 'GET',
+        url: `${process.env.REACT_APP_SERVER_URL}/get-all-orders`,
+      })
 
-    const data = response.data
+      const data = response.data
 
-    if (data.success) {
-      setOrders(data.orders)
-    } else {
-      setError('Could not get orders')
+      if (data.success) {
+        setOrders(data.orders)
+      } else {
+        setError('Could not get orders')
+      }
+    } catch (e) {
+      setError(e)
+      console.error(e)
     }
   }
 

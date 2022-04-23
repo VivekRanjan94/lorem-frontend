@@ -8,18 +8,23 @@ const Products = () => {
   const [error, setError] = useState('')
 
   const getProducts = async () => {
-    const response = Axios({
-      method: 'GET',
-      url: `${process.env.REACT_APP_SERVER_URL}/get-products`,
-      data: { seller_id: user.id },
-    })
+    try {
+      const response = Axios({
+        method: 'GET',
+        url: `${process.env.REACT_APP_SERVER_URL}/get-products`,
+        data: { seller_id: user.id },
+      })
 
-    const data = response.data
+      const data = response.data
 
-    if (data.success) {
-      setProducts(data.products)
-    } else {
-      setError('Could not get products')
+      if (data.success) {
+        setProducts(data.products)
+      } else {
+        setError('Could not get products')
+      }
+    } catch (e) {
+      setError(e)
+      console.error(e)
     }
   }
 

@@ -21,26 +21,31 @@ const Add = () => {
       return
     }
 
-    const response = await Axios({
-      method: 'POST',
-      url: `${process.env.REACT_APP_SERVER_URL}/add-product`,
-      data: {
-        product: {
-          name,
-          brand,
-          price,
-          image,
-          seller_id: user.id,
+    try {
+      const response = await Axios({
+        method: 'POST',
+        url: `${process.env.REACT_APP_SERVER_URL}/add-product`,
+        data: {
+          product: {
+            name,
+            brand,
+            price,
+            image,
+            seller_id: user.id,
+          },
         },
-      },
-    })
+      })
 
-    const data = response.data
+      const data = response.data
 
-    if (data.success) {
-      navigate('/seller-home')
-    } else {
-      setError(data.message)
+      if (data.success) {
+        navigate('/seller-home')
+      } else {
+        setError(data.message)
+      }
+    } catch (e) {
+      setError(e)
+      console.error(e)
     }
   }
 

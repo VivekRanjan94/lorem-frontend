@@ -9,18 +9,23 @@ const Orders = () => {
   const [error, setError] = useState('')
 
   const getOrders = async () => {
-    const response = Axios({
-      method: 'GET',
-      url: `${process.env.REACT_APP_SERVER_URL}/get-orders`,
-      data: { seller_id: user.id },
-    })
+    try {
+      const response = Axios({
+        method: 'GET',
+        url: `${process.env.REACT_APP_SERVER_URL}/get-orders`,
+        data: { seller_id: user.id },
+      })
 
-    const data = response.data
+      const data = response.data
 
-    if (data.success) {
-      setOrders(data.orders)
-    } else {
-      setError('Could not get orders')
+      if (data.success) {
+        setOrders(data.orders)
+      } else {
+        setError('Could not get orders')
+      }
+    } catch (e) {
+      setError(e)
+      console.error(e)
     }
   }
 

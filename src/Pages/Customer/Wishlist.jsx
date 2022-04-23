@@ -9,18 +9,23 @@ const Wishlist = () => {
   const [error, setError] = useState('')
 
   const getWishlist = async () => {
-    const response = Axios({
-      method: 'GET',
-      url: `${process.env.REACT_APP_SERVER_URL}/get-wishlist`,
-      data: { user_id: user.id },
-    })
+    try {
+      const response = Axios({
+        method: 'GET',
+        url: `${process.env.REACT_APP_SERVER_URL}/get-wishlist`,
+        data: { user_id: user.id },
+      })
 
-    const data = response.data
+      const data = response.data
 
-    if (data.success) {
-      setWishlist(data.wishlist)
-    } else {
-      setError('Could not get wishlist')
+      if (data.success) {
+        setWishlist(data.wishlist)
+      } else {
+        setError('Could not get wishlist')
+      }
+    } catch (e) {
+      setError(e)
+      console.error(e)
     }
   }
 

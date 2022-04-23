@@ -6,17 +6,22 @@ const Users = () => {
   const [error, setError] = useState('')
 
   const getUsers = async () => {
-    const response = await Axios({
-      method: 'GET',
-      url: `${process.env.REACT_APP_SERVER_URL}/get-users`,
-    })
+    try {
+      const response = await Axios({
+        method: 'GET',
+        url: `${process.env.REACT_APP_SERVER_URL}/get-users`,
+      })
 
-    const data = response.data
+      const data = response.data
 
-    if (data.success) {
-      setUsers(data.users)
-    } else {
-      setError('Could not get users')
+      if (data.success) {
+        setUsers(data.users)
+      } else {
+        setError('Could not get users')
+      }
+    } catch (e) {
+      setError(e)
+      console.error(e)
     }
   }
 
