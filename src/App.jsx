@@ -12,6 +12,7 @@ import AdminRoute from './Components/Routes/AdminRoute'
 import SellerRoute from './Components/Routes/SellerRoute'
 import CustomerRoute from './Components/Routes/CustomerRoute'
 import Home from './Components/Routes/Home'
+import Profile from './Pages/Profile'
 
 // Pages
 import Login from './Pages/Auth/Login'
@@ -55,16 +56,19 @@ const App = () => {
                 <Route path='/register' element={<Register />} />
               </Route>
               <Route element={<AdminRoute />}>
+                <Route path='/admin-profile' element={<Profile />} />
                 <Route path='/admin-home' element={<AdminHome />} />
                 <Route path='/admin-orders' element={<AdminOrders />} />
                 <Route path='/users' element={<Users />} />
               </Route>
               <Route element={<CustomerRoute />}>
+                <Route path='/customer-profile' element={<Profile />} />
                 <Route path='/customer-home' element={<CustomerHome />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/wishlist' element={<Wishlist />} />
               </Route>
               <Route element={<SellerRoute />}>
+                <Route path='/seller-profile' element={<Profile />} />
                 <Route path='/seller-home' element={<SellerHome />} />
                 <Route path='/add-product' element={<Add />} />
                 <Route path='/seller-orders' element={<SellerOrders />} />

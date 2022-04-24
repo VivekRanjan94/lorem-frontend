@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useUser } from '../Contexts/UserContext'
+import SellerNavbar from '../Navbar/SellerNavbar'
 
 const SellerRoute = () => {
   const { user } = useUser()
@@ -8,7 +9,10 @@ const SellerRoute = () => {
   return !user ? (
     <Navigate to='/login' />
   ) : user.type === 'seller' ? (
-    <Outlet />
+    <>
+      <SellerNavbar />
+      <Outlet />
+    </>
   ) : (
     <Navigate to='/' />
   )

@@ -37,9 +37,6 @@ const Home = () => {
   return (
     <div className='customer-home'>
       <div>Customer Home</div>
-      <Link to='/cart'>Cart</Link>
-      <Link to='/wishlist'>Wishlist</Link>
-      <button onClick={logout}>logout</button>
       {products.length > 0 &&
         products.map((product) => {
           return <div>{product.name}</div>

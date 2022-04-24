@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 import { useUser } from '../Contexts/UserContext'
+import AdminNavbar from '../Navbar/AdminNavbar'
 
 const AdminRoute = () => {
   const { user } = useUser()
@@ -8,7 +9,10 @@ const AdminRoute = () => {
   return !user ? (
     <Navigate to='/login' />
   ) : user.type === 'admin' ? (
-    <Outlet />
+    <>
+      <AdminNavbar />
+      <Outlet />
+    </>
   ) : (
     <Navigate to='/' />
   )
