@@ -1,0 +1,28 @@
+.profile {
+  padding: 2rem;
+
+  &-details {
+    &-detail {
+      color: rgba(255,255,255, 0.75);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      
+      &-value {
+        color: white;
+      }
+    }
+  }
+
+  button {
+    padding: 0.25rem 1rem;
+    background-color: rgba(0,0,0,0.75);
+    border-radius: 0.5rem;
+    color: white;
+    border: none;
+
+    &:hover{ 
+      cursor: pointer;
+      background-color: rgba(0,0,0,0.5);
+    }
+  }
+}
