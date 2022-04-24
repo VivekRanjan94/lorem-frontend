@@ -35,7 +35,7 @@ const Home = () => {
   }, [])
 
   return (
-    <div>
+    <div className='customer-home'>
       <div>Customer Home</div>
       <Link to='/cart'>Cart</Link>
       <Link to='/wishlist'>Wishlist</Link>

@@ -69,82 +69,86 @@ const Register = () => {
   }
 
   return (
-    <div>
-      <div>Register</div>
-      {error}
-      <form onSubmit={handleRegister}>
-        <div className='group'>
-          <label htmlFor='username'>Username</label>
-          <input
-            type='text'
-            name='username'
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value)
-            }}
-          />
+    <div className='register-container'>
+      <div className='register'>
+        <div className='register-title'>Register</div>
+        {error}
+        <form onSubmit={handleRegister}>
+          <div className='register-group'>
+            <label htmlFor='username'>Username</label>
+            <input
+              type='text'
+              name='username'
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value)
+              }}
+            />
+          </div>
+          <div className='register-group'>
+            <label htmlFor='firstName'>First Name</label>
+            <input
+              type='text'
+              name='firstName'
+              value={firstName}
+              onChange={(e) => {
+                setFirstName(e.target.value)
+              }}
+            />
+          </div>
+          <div className='register-group'>
+            <label htmlFor='lastName'>Last Name</label>
+            <input
+              type='text'
+              name='lastName'
+              value={lastName}
+              onChange={(e) => {
+                setLastName(e.target.value)
+              }}
+            />
+          </div>
+          <div className='register-group'>
+            <label htmlFor='password'>Password</label>
+            <input
+              type='password'
+              name='password'
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value)
+              }}
+            />
+          </div>
+          <div className='register-group'>
+            <label htmlFor='confirmPassword'>Confirm Password</label>
+            <input
+              type='password'
+              name='confirmPassword'
+              value={confirmPassword}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value)
+              }}
+            />
+          </div>
+          <div className='register-group'>
+            <label htmlFor='type'>Type of User</label>
+            <select
+              name='type'
+              value={type}
+              onChange={(e) => {
+                setType(e.target.value)
+              }}
+            >
+              <option value='admin'>Admin</option>
+              <option value='seller'>Seller</option>
+              <option value='customer'>Customer</option>
+            </select>
+          </div>
+          <button type='submit'>Register</button>
+        </form>
+        <div className='prompt'>
+          Already have an account? <Link to='/login'>Login</Link>
         </div>
-        <div className='group'>
-          <label htmlFor='firstName'>First Name</label>
-          <input
-            type='text'
-            name='firstName'
-            value={firstName}
-            onChange={(e) => {
-              setFirstName(e.target.value)
-            }}
-          />
-        </div>
-        <div className='group'>
-          <label htmlFor='lastName'>Last Name</label>
-          <input
-            type='text'
-            name='lastName'
-            value={lastName}
-            onChange={(e) => {
-              setLastName(e.target.value)
-            }}
-          />
-        </div>
-        <div className='group'>
-          <label htmlFor='password'>Password</label>
-          <input
-            type='password'
-            name='password'
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value)
-            }}
-          />
-        </div>
-        <div className='group'>
-          <label htmlFor='confirmPassword'>Confirm Password</label>
-          <input
-            type='password'
-            name='confirmPassword'
-            value={confirmPassword}
-            onChange={(e) => {
-              setConfirmPassword(e.target.value)
-            }}
-          />
-        </div>
-        <div className='group'>
-          <label htmlFor='type'>Type of User</label>
-          <select
-            name='type'
-            value={type}
-            onChange={(e) => {
-              setType(e.target.value)
-            }}
-          >
-            <option value='admin'>Admin</option>
-            <option value='seller'>Seller</option>
-            <option value='customer'>Customer</option>
-          </select>
-        </div>
-        <button type='submit'>Register</button>
-      </form>
-      <Link to='/login'>Login</Link>
+      </div>
     </div>
   )
 }

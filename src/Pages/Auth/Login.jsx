@@ -32,35 +32,39 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <div>Login</div>
-      {error}
-      <form onSubmit={handleLogin}>
-        <div className='group'>
-          <label htmlFor='username'>Username</label>
-          <input
-            type='text'
-            name='username'
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value)
-            }}
-          />
+    <div className='login-container'>
+      <div className='login'>
+        <div className='login-title'>Login</div>
+        {error}
+        <form onSubmit={handleLogin}>
+          <div className='login-group'>
+            <label htmlFor='username'>Username</label>
+            <input
+              type='text'
+              name='username'
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value)
+              }}
+            />
+          </div>
+          <div className='login-group'>
+            <label htmlFor='password'>Password</label>
+            <input
+              type='password'
+              name='password'
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value)
+              }}
+            />
+          </div>
+          <button type='submit'>Login</button>
+        </form>
+        <div className='login-register-prompt'>
+          Don't have an account? <Link to='/register'>Register</Link>
         </div>
-        <div className='group'>
-          <label htmlFor='password'>Password</label>
-          <input
-            type='password'
-            name='password'
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value)
-            }}
-          />
-        </div>
-        <button type='submit'>Login</button>
-      </form>
-      <Link to='/register'>Register</Link>
+      </div>
     </div>
   )
 }
