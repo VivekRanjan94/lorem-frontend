@@ -1,6 +1,7 @@
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useUser } from '../../Components/Contexts/UserContext'
+import ProductList from '../../Components/Products/ProductList'
 
 const Products = () => {
   const { user } = useUser()
@@ -32,7 +33,15 @@ const Products = () => {
   useEffect(() => {
     getProducts()
   }, [])
-  return <div>Products</div>
+
+  return (
+    <div className='seller-products'>
+      <div className='seller-products-title'>Home</div>
+      <div className='seller-products-list'>
+        <ProductList products={products} />
+      </div>
+    </div>
+  )
 }
 
 export default Products

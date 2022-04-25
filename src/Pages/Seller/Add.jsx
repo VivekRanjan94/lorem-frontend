@@ -12,12 +12,18 @@ const Add = () => {
   const [price, setPrice] = useState(0)
   const [image, setImage] = useState('')
   const [error, setError] = useState('')
+  const [imageLoaded, setImageLoaded] = useState(false)
 
   const handleAdd = async (e) => {
     e.preventDefault()
 
     if (name === '' || brand === '' || price < 100 || image === '') {
       setError('Empty Fields')
+      return
+    }
+
+    if (!imageLoaded) {
+      setError('Invalid Image URL')
       return
     }
 
@@ -51,55 +57,75 @@ const Add = () => {
   }
 
   return (
-    <div>
-      <div>Add</div>
-      <form onSubmit={handleAdd}>
-        <div className='group'>
-          <label htmlFor='name'>Name</label>
-          <input
-            type='text'
-            name='name'
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value)
+    <div className='seller-add'>
+      <div className='seller-add-left'>
+        <div className='error'>{error}</div>
+        <div className='seller-add-title'>Add</div>
+        <form className='seller-add-form' onSubmit={handleAdd}>
+          <div className='seller-add-form-group'>
+            <label htmlFor='name'>Name: </label>
+            <input
+              type='text'
+              name='name'
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value)
+              }}
+            />
+          </div>
+          <div className='seller-add-form-group'>
+            <label htmlFor='brand'>Brand: </label>
+            <input
+              type='text'
+              name='brand'
+              value={brand}
+              onChange={(e) => {
+                setBrand(e.target.value)
+              }}
+            />
+          </div>
+          <div className='seller-add-form-group'>
+            <label htmlFor='price'>Price: </label>
+            <input
+              type='number'
+              name='price'
+              value={price}
+              onChange={(e) => {
+                setPrice(e.target.value)
+              }}
+            />
+          </div>
+          <div className='seller-add-form-group'>
+            <label htmlFor='image'>Image: </label>
+            <input
+              type='text'
+              name='image'
+              value={image}
+              onChange={(e) => {
+                setImage(e.target.value)
+              }}
+            />
+          </div>
+          <button className='seller-add-form-btn' type='submit'>
+            Submit
+          </button>
+        </form>
+      </div>
+      <div className='seller-add-right'>
+        <div className='seller-add-form-img'>
+          <img
+            onError={() => {
+              setImageLoaded(false)
             }}
+            onLoad={() => {
+              setImageLoaded(true)
+            }}
+            style={imageLoaded ? {} : { display: 'none' }}
+            src={image}
+            alt='Uploaded by user'
           />
         </div>
-        <div className='group'>
-          <label htmlFor='brand'>Brand</label>
-          <input
-            type='text'
-            name='brand'
-            value={brand}
-            onChange={(e) => {
-              setBrand(e.target.value)
-            }}
-          />
-        </div>
-        <div className='group'>
-          <label htmlFor='price'>Price</label>
-          <input
-            type='number'
-            name='price'
-            value={price}
-            onChange={(e) => {
-              setPrice(e.target.value)
-            }}
-          />
-        </div>
-        <div className='group'>
-          <label htmlFor='image'>Image</label>
-          <input
-            type='text'
-            name='image'
-            value={image}
-            onChange={(e) => {
-              setImage(e.target.value)
-            }}
-          />
-        </div>
-        <button type='submit'>Submit</button>
-      </form>
+      </div>
     </div>
   )
 }

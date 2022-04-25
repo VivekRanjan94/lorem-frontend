@@ -3,6 +3,11 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1rem;
 
+  &-error {
+    color: rgb(225, 77, 77);
+    font-size: 1.5rem;
+  }
+
   &-product {
     &-name {
       font-size: 2rem;
