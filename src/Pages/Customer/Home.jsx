@@ -1,10 +1,10 @@
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useAuth } from '../../Components/Contexts/AuthContext'
+import { useUser } from '../../Components/Contexts/UserContext'
+import ProductList from '../../Components/Products/ProductList'
 
 const Home = () => {
-  const { logout } = useAuth()
+  const { user } = useUser()
 
   const [products, setProducts] = useState([])
   const [error, setError] = useState('')
@@ -25,8 +25,52 @@ const Home = () => {
         setError(data.message)
       }
     } catch (e) {
-      setError(e)
-      console.error(e)
+      setError('Could not get Products')
+      console.error(e.response.data.message)
+    }
+  }
+
+  const addToCart = async (product_id) => {
+    try {
+      const response = await Axios({
+        method: 'POST',
+        url: `${process.env.REACT_APP_SERVER_URL}/add-to-cart`,
+        data: { user_id: user.id, product_id },
+        withCredentials: true,
+      })
+
+      const data = response.data
+
+      if (data.success) {
+        console.log('added to cart')
+      } else {
+        setError(data.message)
+      }
+    } catch (e) {
+      setError(e.response.data.message)
+      console.error(e.response.data.message)
+    }
+  }
+
+  const addToWishlist = async (product_id) => {
+    try {
+      const response = await Axios({
+        method: 'POST',
+        url: `${process.env.REACT_APP_SERVER_URL}/add-to-wishlist`,
+        data: { user_id: user.id, product_id },
+        withCredentials: true,
+      })
+
+      const data = response.data
+
+      if (data.success) {
+        console.log('added to wishlist')
+      } else {
+        setError(data.message)
+      }
+    } catch (e) {
+      setError(e.response.data.message)
+      console.error(e.response.data.message)
     }
   }
 
@@ -36,11 +80,18 @@ const Home = () => {
 
   return (
     <div className='customer-home'>
-      <div>Customer Home</div>
-      {products.length > 0 &&
-        products.map((product) => {
-          return <div>{product.name}</div>
-        })}
+      <div className='customer-home-title'>Home</div>
+      <div className='customer-home-error'>{error}</div>
+      <div className='customer-home-list'>
+        <ProductList
+          products={products}
+          cartHandler={{ cartTitle: 'Add to Cart', cartFunction: addToCart }}
+          wishlistHandler={{
+            wishlistTitle: 'Add to Wishlist',
+            wishlistFunction: addToWishlist,
+          }}
+        />
+      </div>
     </div>
   )
 }

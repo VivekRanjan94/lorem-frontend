@@ -20,8 +20,20 @@ const Product = ({
         <div className='product-list-product-price'>{product.price}</div>
         {canBuy && (
           <div className='product-list-product-buttons'>
-            <button onClick={cartHandler}>Add To Cart</button>
-            <button onClick={wishlistHandler}>Add To Wishlist</button>
+            <button
+              onClick={() => {
+                cartHandler.cartFunction(product.id)
+              }}
+            >
+              {cartHandler.cartTitle}
+            </button>
+            <button
+              onClick={() => {
+                wishlistHandler.wishlistFunction(product.id)
+              }}
+            >
+              {wishlistHandler.wishlistTitle}
+            </button>
           </div>
         )}
         {isAdmin && (
