@@ -26,7 +26,6 @@ const Products = () => {
       }
     } catch (e) {
       setError(e)
-      console.error(e)
     }
   }
 

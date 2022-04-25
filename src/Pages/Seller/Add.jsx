@@ -52,7 +52,6 @@ const Add = () => {
       }
     } catch (e) {
       setError(e)
-      console.error(e)
     }
   }
 

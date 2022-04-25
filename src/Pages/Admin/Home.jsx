@@ -24,7 +24,6 @@ const Home = () => {
       }
     } catch (e) {
       setError(e)
-      console.error(e)
     }
   }
 

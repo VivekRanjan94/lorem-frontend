@@ -27,7 +27,6 @@ const Orders = () => {
       }
     } catch (e) {
       setError(e)
-      console.error(e)
     }
   }
 

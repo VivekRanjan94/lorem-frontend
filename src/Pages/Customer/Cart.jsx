@@ -27,7 +27,6 @@ const Cart = () => {
       }
     } catch (e) {
       setError(e.response.data.message)
-      console.error(e.response.data.message)
     }
   }
 
@@ -53,7 +52,6 @@ const Cart = () => {
       }
     } catch (e) {
       setError(e.response.data.message)
-      console.error(e.response.data.message)
     }
   }
 
@@ -75,7 +73,6 @@ const Cart = () => {
       }
     } catch (e) {
       setError(e.response.data.message)
-      console.error(e.response.data.message)
     }
   }
 

@@ -26,7 +26,6 @@ const Home = () => {
       }
     } catch (e) {
       setError('Could not get Products')
-      console.error(e.response.data.message)
     }
   }
 
@@ -47,7 +46,6 @@ const Home = () => {
       }
     } catch (e) {
       setError(e.response.data.message)
-      console.error(e.response.data.message)
     }
   }
 
@@ -67,7 +65,6 @@ const Home = () => {
       }
     } catch (e) {
       setError(e.response.data.message)
-      console.error(e.response.data.message)
     }
   }
 

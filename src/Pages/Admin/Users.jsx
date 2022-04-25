@@ -22,7 +22,6 @@ const Users = () => {
       }
     } catch (e) {
       setError(e)
-      console.error(e)
     }
   }
 

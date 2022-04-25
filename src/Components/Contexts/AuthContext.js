@@ -88,10 +88,10 @@ export const AuthProvider = ({ children }) => {
         setUser(undefined)
         navigate('/login')
       } else {
-        console.error(data.message)
+        return data.message
       }
     } catch (e) {
-      console.error(e)
+      return e.response.data.message
     }
   }
 
@@ -111,7 +111,7 @@ export const AuthProvider = ({ children }) => {
         setUser(data.user)
       }
     } catch (er) {
-      console.log('Logged in session expired/logged out')
+      return er
     }
 
     setLoading(false)

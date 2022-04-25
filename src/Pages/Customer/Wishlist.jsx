@@ -27,7 +27,6 @@ const Wishlist = () => {
       }
     } catch (e) {
       setError(e)
-      console.error(e)
     }
   }
 
@@ -53,7 +52,6 @@ const Wishlist = () => {
       }
     } catch (e) {
       setError(e.response.data.message)
-      console.error(e.response.data.message)
     }
   }
 
@@ -75,7 +73,6 @@ const Wishlist = () => {
       }
     } catch (e) {
       setError(e.response.data.message)
-      console.error(e.response.data.message)
     }
   }
 
