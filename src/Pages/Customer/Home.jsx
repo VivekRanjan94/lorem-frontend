@@ -42,7 +42,6 @@ const Home = () => {
       const data = response.data
 
       if (data.success) {
-        console.log('added to cart')
       } else {
         setError(data.message)
       }
@@ -63,9 +62,7 @@ const Home = () => {
 
       const data = response.data
 
-      if (data.success) {
-        console.log('added to wishlist')
-      } else {
+      if (!data.success) {
         setError(data.message)
       }
     } catch (e) {

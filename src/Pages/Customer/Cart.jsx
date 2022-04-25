@@ -70,7 +70,6 @@ const Cart = () => {
       const data = response.data
 
       if (data.success) {
-        console.log('Moved to Wishlist')
         getCart()
       } else {
         setError(data.message)

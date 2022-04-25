@@ -85,7 +85,6 @@ export const AuthProvider = ({ children }) => {
 
       const { data } = response
       if (data.success) {
-        console.log('User logged out successfully')
         setUser(undefined)
         navigate('/login')
       } else {
@@ -110,8 +109,6 @@ export const AuthProvider = ({ children }) => {
       const data = response.data
       if (data.success) {
         setUser(data.user)
-      } else {
-        console.log('Logged in session expired/logged out')
       }
     } catch (er) {
       console.log('Logged in session expired/logged out')

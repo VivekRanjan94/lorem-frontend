@@ -18,14 +18,14 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault()
 
-    console.log({
-      username,
-      password,
-      confirmPassword,
-      type,
-      firstName,
-      lastName,
-    })
+    // console.log({
+    //   username,
+    //   password,
+    //   confirmPassword,
+    //   type,
+    //   firstName,
+    //   lastName,
+    // })
 
     if (
       username === '' ||

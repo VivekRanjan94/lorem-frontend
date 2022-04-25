@@ -47,7 +47,6 @@ const Wishlist = () => {
       const data = response.data
 
       if (data.success) {
-        console.log('Moved to cart')
         getWishlist()
       } else {
         setError(data.message)
@@ -70,7 +69,6 @@ const Wishlist = () => {
       const data = response.data
 
       if (data.success) {
-        console.log('Deleted from wishlist')
         getWishlist()
       } else {
         setError(data.message)

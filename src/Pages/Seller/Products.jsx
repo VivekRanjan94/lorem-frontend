@@ -21,7 +21,6 @@ const Products = () => {
 
       if (data.success) {
         setProducts(data.products)
-        console.log(data)
       } else {
         setError('Could not get products')
       }
