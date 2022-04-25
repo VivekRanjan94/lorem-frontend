@@ -76,6 +76,24 @@ const Cart = () => {
     }
   }
 
+  const handleCheckout = async () => {
+    try {
+      const { data } = await Axios({
+        method: 'POST',
+        url: `${process.env.REACT_APP_SERVER_URL}/checkout`,
+        withCredentials: true,
+      })
+
+      if (data.success) {
+        getCart()
+      } else {
+        setError(data.message)
+      }
+    } catch (e) {
+      setError(e.response.data.message)
+    }
+  }
+
   return (
     <div className='customer-cart'>
       <div className='customer-cart-title'>Cart</div>
@@ -90,6 +108,16 @@ const Cart = () => {
           }}
         />
       </div>
+      {cart.length > 0 && (
+        <div className='customer-cart-checkout'>
+          <button
+            onClick={handleCheckout}
+            className='customer-cart-checkout-btn'
+          >
+            Checkout
+          </button>
+        </div>
+      )}
     </div>
   )
 }
