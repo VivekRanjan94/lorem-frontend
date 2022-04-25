@@ -30,7 +30,29 @@ const Users = () => {
     getUsers()
   }, [])
 
-  return <div>Users</div>
+  return (
+    <div className='admin-users'>
+      <div className='admin-users-title'>Users</div>
+      <table className='admin-users-list'>
+        <tr>
+          <th>User ID</th>
+          <th>First Name</th>
+          <th>Last Brand</th>
+          <th>Username</th>
+        </tr>
+        {users.map((user) => {
+          return (
+            <tr className='admin-users-list-user'>
+              <td>{user.id}</td>
+              <td>{user.first_name}</td>
+              <td>{user.last_name}</td>
+              <td>{user.username}</td>
+            </tr>
+          )
+        })}
+      </table>
+    </div>
+  )
 }
 
 export default Users

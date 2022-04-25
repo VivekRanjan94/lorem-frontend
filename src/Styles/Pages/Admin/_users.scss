@@ -1,0 +1,22 @@
+.admin-users {
+  padding: 2rem;
+
+  &-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+  &-list {
+    width: 100%;
+
+    th,
+    td {
+      text-align: center;
+    }
+
+    th {
+      font-size: 1.5rem;
+    }
+  }
+}
