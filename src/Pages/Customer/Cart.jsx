@@ -14,6 +14,7 @@ const Cart = () => {
         method: 'GET',
         url: `${process.env.REACT_APP_SERVER_URL}/get-cart`,
         data: { user_id: user.id },
+        withCredentials: true,
       })
 
       const data = response.data

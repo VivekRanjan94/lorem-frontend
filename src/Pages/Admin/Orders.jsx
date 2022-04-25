@@ -10,6 +10,7 @@ const Orders = () => {
       const response = await Axios({
         method: 'GET',
         url: `${process.env.REACT_APP_SERVER_URL}/get-all-orders`,
+        withCredentials: true,
       })
 
       const data = response.data

@@ -10,6 +10,7 @@ const Users = () => {
       const response = await Axios({
         method: 'GET',
         url: `${process.env.REACT_APP_SERVER_URL}/get-users`,
+        withCredentials: true,
       })
 
       const data = response.data

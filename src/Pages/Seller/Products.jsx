@@ -13,6 +13,7 @@ const Products = () => {
         method: 'GET',
         url: `${process.env.REACT_APP_SERVER_URL}/get-products`,
         data: { seller_id: user.id },
+        withCredentials: true,
       })
 
       const data = response.data

@@ -34,6 +34,7 @@ const Add = () => {
             seller_id: user.id,
           },
         },
+        withCredentials: true,
       })
 
       const data = response.data
