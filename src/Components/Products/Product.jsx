@@ -1,6 +1,12 @@
 import React from 'react'
 
-const Product = ({ product, canBuy, cartHandler, wishlistHandler }) => {
+const Product = ({
+  product,
+  canBuy,
+  isAdmin,
+  cartHandler,
+  wishlistHandler,
+}) => {
   return (
     <div className='product-list-product'>
       <div className='product-list-product-name'>
@@ -16,6 +22,11 @@ const Product = ({ product, canBuy, cartHandler, wishlistHandler }) => {
           <div className='product-list-product-buttons'>
             <button onClick={cartHandler}>Add To Cart</button>
             <button onClick={wishlistHandler}>Add To Wishlist</button>
+          </div>
+        )}
+        {isAdmin && (
+          <div className='product-list-product-seller'>
+            Sold By: {product.seller_id}
           </div>
         )}
       </div>

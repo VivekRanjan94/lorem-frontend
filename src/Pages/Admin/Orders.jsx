@@ -1,5 +1,6 @@
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import OrderList from '../../Components/Orders/OrderList'
 
 const Orders = () => {
   const [orders, setOrders] = useState([])
@@ -30,7 +31,12 @@ const Orders = () => {
     getOrders()
   }, [])
 
-  return <div>Orders</div>
+  return (
+    <div className='admin-orders'>
+      <div className='admin-orders-title'>Orders</div>
+      <OrderList orders={orders} />
+    </div>
+  )
 }
 
 export default Orders
