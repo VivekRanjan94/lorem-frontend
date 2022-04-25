@@ -13,7 +13,7 @@ const Navbar = ({ links }) => {
       <ul className='navbar-links'>
         {links.map((link) => {
           return (
-            <li className='navbar-links-link'>
+            <li key={Math.random()} className='navbar-links-link'>
               <Link to={link.href}>{link.name}</Link>
             </li>
           )

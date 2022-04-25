@@ -10,6 +10,7 @@ const ProductList = ({ products, cartHandler, wishlistHandler }) => {
       {products.map((product) => {
         return (
           <Product
+            key={Math.random()}
             product={product}
             canBuy={user.type === 'customer'}
             isAdmin={user.type === 'admin'}

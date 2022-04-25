@@ -47,7 +47,6 @@ const Cart = () => {
       const data = response.data
 
       if (data.success) {
-        console.log('Deleted from cart')
         getCart()
       } else {
         setError(data.message)
