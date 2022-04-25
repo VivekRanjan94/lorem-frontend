@@ -37,7 +37,7 @@ const Users = () => {
         <tr>
           <th>User ID</th>
           <th>First Name</th>
-          <th>Last Brand</th>
+          <th>Last Name</th>
           <th>Username</th>
         </tr>
         {users.map((user) => {

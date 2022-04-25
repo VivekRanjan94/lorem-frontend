@@ -10,10 +10,10 @@ const Products = () => {
 
   const getProducts = async () => {
     try {
-      const response = Axios({
+      const response = await Axios({
         method: 'GET',
         url: `${process.env.REACT_APP_SERVER_URL}/get-products`,
-        data: { seller_id: user.id },
+        params: { seller_id: user.id },
         withCredentials: true,
       })
 
@@ -21,6 +21,7 @@ const Products = () => {
 
       if (data.success) {
         setProducts(data.products)
+        console.log(data)
       } else {
         setError('Could not get products')
       }
@@ -36,7 +37,7 @@ const Products = () => {
 
   return (
     <div className='seller-products'>
-      <div className='seller-products-title'>Home</div>
+      <div className='seller-products-title'>My Products</div>
       <div className='seller-products-list'>
         <ProductList products={products} />
       </div>

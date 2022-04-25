@@ -11,10 +11,10 @@ const Orders = () => {
 
   const getOrders = async () => {
     try {
-      const response = Axios({
+      const response = await Axios({
         method: 'GET',
         url: `${process.env.REACT_APP_SERVER_URL}/get-orders`,
-        data: { seller_id: user.id },
+        params: { seller_id: user.id },
         withCredentials: true,
       })
 
