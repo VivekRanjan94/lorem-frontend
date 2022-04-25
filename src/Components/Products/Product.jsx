@@ -38,7 +38,7 @@ const Product = ({
         )}
         {isAdmin && (
           <div className='product-list-product-seller'>
-            Sold By: {product.seller_id}
+            Sold By: {product.first_name} {product.last_name}
           </div>
         )}
       </div>
