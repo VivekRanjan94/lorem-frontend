@@ -1,39 +1,69 @@
 .login-container {
   display: flex;
+  height: 100vh;
   justify-content: center;
   align-items: center;
 }
 
 .login {
-  padding: 3rem;
+  padding: 4rem 2rem;
+  background: rgba(4, 22, 44, 0.5);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(4, 22, 44, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  &-title  {
-    font-size: 3rem;
-    margin-bottom: 2rem;
+  &-title {
+      font-size: 3rem;
+      margin-bottom: 2rem;
   }
 
   &-group {
-    width: 100%;
-    margin-bottom: 1rem;
-    
-    label {
-      display: block;
-    }
+      width: 100%;
+      margin-bottom: 1rem;
+      &-title {
+        display: flex;
+        flex-direction: row;
+      }
 
+      i {
+        padding: 0rem 1rem 0rem 0.2rem;
+      }
+
+      label {
+        display: block;
+      }
+
+      input {
+        width: 105%;
+        margin: 0.5rem 0rem;
+        height: 1.25rem;
+        border: none;
+        border-radius: 5px;
+        &:enabled{
+          border: none;
+          outline: none;
+        }
+      }
   }
+
+  &-button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
   button {
     color: white;
     font-size: 1rem;
     border-radius: 0.5rem;
-    background-color: rgba(0,0,0,0.5);
-    padding: 0.25rem 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.5rem 1.5rem;
     border: none;
     margin-bottom: 1rem;
-
     &:hover {
       cursor: pointer;
-      background-color: rgba(0,0,0,0.25);
+      background-color: rgba(0, 0, 0, 0.25);
     }
   }
 }
-

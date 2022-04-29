@@ -1,9 +1,12 @@
 .order-list {
   width: 100%;
 
-  th,
+  th {
+    text-align: left;
+  }
   td {
-    text-align: center;
+    padding: 0.25rem 0.25rem;
+    text-align: left;
   }
 
   th {
