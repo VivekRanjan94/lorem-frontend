@@ -37,7 +37,7 @@ const Products = () => {
     <div className='seller-products'>
       <div className='seller-products-title'>My Products</div>
       <div className='seller-products-list'>
-        <ProductList products={products} />
+        <ProductList products={products} showNumber={true} />
       </div>
     </div>
   )

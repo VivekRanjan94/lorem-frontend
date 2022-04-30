@@ -38,6 +38,7 @@ const Users = () => {
           <th>First Name</th>
           <th>Last Name</th>
           <th>Username</th>
+          <th>Type</th>
         </tr>
         {users.map((user) => {
           return (
@@ -46,6 +47,7 @@ const Users = () => {
               <td>{user.first_name}</td>
               <td>{user.last_name}</td>
               <td>{user.username}</td>
+              <td>{user.type}</td>
             </tr>
           )
         })}

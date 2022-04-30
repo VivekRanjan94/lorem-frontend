@@ -1,10 +1,18 @@
-import React from "react";
+import React from 'react'
 
-const Product = ({ product, canBuy, isAdmin, cartHandler, wishlistHandler }) => {
+const Product = ({
+  product,
+  canBuy,
+  isAdmin,
+  cartHandler,
+  wishlistHandler,
+  showNumber,
+}) => {
   return (
     <div className='product-list-product'>
       <div className='product-list-product-name'>
-        {product.name} <span className='product-list-product-brand'>by {product.brand}</span>
+        {product.name}{' '}
+        <span className='product-list-product-brand'>by {product.brand}</span>
       </div>
       <div className='product-list-product-img'>
         <img src={product.image} alt='product' />
@@ -15,14 +23,14 @@ const Product = ({ product, canBuy, isAdmin, cartHandler, wishlistHandler }) => 
           <div className='product-list-product-buttons'>
             <button
               onClick={() => {
-                cartHandler.cartFunction(product.id);
+                cartHandler.cartFunction(product.id)
               }}
             >
               {cartHandler.cartTitle}
             </button>
             <button
               onClick={() => {
-                wishlistHandler.wishlistFunction(product.id);
+                wishlistHandler.wishlistFunction(product.id)
               }}
             >
               {wishlistHandler.wishlistTitle}
@@ -34,9 +42,14 @@ const Product = ({ product, canBuy, isAdmin, cartHandler, wishlistHandler }) => 
             Sold By: {product.first_name} {product.last_name}
           </div>
         )}
+        {showNumber && (
+          <div className='product-list-product-seller'>
+            Orders: {product.count}
+          </div>
+        )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Product;
+export default Product
