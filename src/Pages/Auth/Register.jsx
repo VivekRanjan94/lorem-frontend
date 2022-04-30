@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
-import { useAuth } from "../../Components/Contexts/AuthContext";
+import { useAuth } from '../../Components/Contexts/AuthContext'
 
 const Register = () => {
-  const { register } = useAuth();
-  const navigate = useNavigate();
+  const { register } = useAuth()
+  const navigate = useNavigate()
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [type, setType] = useState("admin");
-  const [error, setError] = useState("");
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [type, setType] = useState('customer')
+  const [error, setError] = useState('')
 
   const handleRegister = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     // console.log({
     //   username,
@@ -27,24 +27,30 @@ const Register = () => {
     //   lastName,
     // })
 
-    if (username === "" || password === "" || confirmPassword === "" || firstName === "" || lastName === "") {
-      setError("Empty fields");
-      return;
+    if (
+      username === '' ||
+      password === '' ||
+      confirmPassword === '' ||
+      firstName === '' ||
+      lastName === ''
+    ) {
+      setError('Empty fields')
+      return
     }
 
     if (username.length >= 45) {
-      setError("Username too long");
-      return;
+      setError('Username too long')
+      return
     }
 
     if (password.length >= 45) {
-      setError("Password too long");
-      return;
+      setError('Password too long')
+      return
     }
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
+      setError('Passwords do not match')
+      return
     }
 
     const data = await register({
@@ -53,14 +59,14 @@ const Register = () => {
       first_name: firstName,
       last_name: lastName,
       type,
-    });
+    })
 
     if (data.success) {
-      navigate("/login");
+      navigate('/login')
     } else {
-      setError(data.message);
+      setError(data.message)
     }
-  };
+  }
 
   return (
     <div className='register-container'>
@@ -77,7 +83,7 @@ const Register = () => {
               name='username'
               value={username}
               onChange={(e) => {
-                setUsername(e.target.value);
+                setUsername(e.target.value)
               }}
             />
           </div>
@@ -90,7 +96,7 @@ const Register = () => {
               name='firstName'
               value={firstName}
               onChange={(e) => {
-                setFirstName(e.target.value);
+                setFirstName(e.target.value)
               }}
             />
           </div>
@@ -103,7 +109,7 @@ const Register = () => {
               name='lastName'
               value={lastName}
               onChange={(e) => {
-                setLastName(e.target.value);
+                setLastName(e.target.value)
               }}
             />
           </div>
@@ -116,7 +122,7 @@ const Register = () => {
               name='password'
               value={password}
               onChange={(e) => {
-                setPassword(e.target.value);
+                setPassword(e.target.value)
               }}
             />
           </div>
@@ -129,7 +135,7 @@ const Register = () => {
               name='confirmPassword'
               value={confirmPassword}
               onChange={(e) => {
-                setConfirmPassword(e.target.value);
+                setConfirmPassword(e.target.value)
               }}
             />
           </div>
@@ -141,12 +147,11 @@ const Register = () => {
               name='type'
               value={type}
               onChange={(e) => {
-                setType(e.target.value);
+                setType(e.target.value)
               }}
             >
-              <option value='admin'>Admin</option>
-              <option value='seller'>Seller</option>
               <option value='customer'>Customer</option>
+              <option value='seller'>Seller</option>
             </select>
           </div>
           <div className='register-button-container'>
@@ -158,7 +163,7 @@ const Register = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register
