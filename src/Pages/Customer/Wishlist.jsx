@@ -1,13 +1,16 @@
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useUser } from '../../Components/Contexts/UserContext'
+import Modal from '../../Components/Modal/Modal'
+import StatusModal from '../../Components/Modal/StatusModal'
 import ProductList from '../../Components/Products/ProductList'
 
 const Wishlist = () => {
   const { user } = useUser()
 
   const [wishlist, setWishlist] = useState([])
-  const [error, setError] = useState('')
+  const [showModal, setShowModal] = useState(false)
+  const [status, setStatus] = useState({})
 
   const getWishlist = async () => {
     try {
@@ -20,13 +23,15 @@ const Wishlist = () => {
 
       const data = response.data
 
-      if (data.success) {
-        setWishlist(data.wishlist)
+      if (!data.success) {
+        setStatus({ state: 'error', message: 'Could not get Wishlist' })
+        setShowModal(true)
       } else {
-        setError('Could not get wishlist')
+        setWishlist(data.wishlist)
       }
     } catch (e) {
-      setError(e)
+      setStatus({ state: 'error', message: 'Could not get Wishlist' })
+      setShowModal(true)
     }
   }
 
@@ -45,13 +50,16 @@ const Wishlist = () => {
 
       const data = response.data
 
-      if (data.success) {
-        getWishlist()
+      if (!data.success) {
+        setStatus({ state: 'error', message: data.message })
       } else {
-        setError(data.message)
+        setStatus({ state: 'success', message: 'Moved to Cart' })
+        getWishlist()
       }
     } catch (e) {
-      setError(e.response.data.message)
+      setStatus({ state: 'error', message: e.response.data.message })
+    } finally {
+      setShowModal(true)
     }
   }
 
@@ -66,20 +74,33 @@ const Wishlist = () => {
 
       const data = response.data
 
-      if (data.success) {
-        getWishlist()
+      if (!data.success) {
+        setStatus({ state: 'error', message: data.message })
       } else {
-        setError(data.message)
+        setStatus({ state: 'success', message: 'Deleted from Wishlist' })
+        getWishlist()
       }
     } catch (e) {
-      setError(e.response.data.message)
+      setStatus({ state: 'error', message: e.response.data.message })
+    } finally {
+      setShowModal(true)
     }
   }
 
   return (
     <div className='customer-wishlist'>
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        allowClose={true}
+      >
+        <StatusModal
+          setShowModal={setShowModal}
+          message={status.message}
+          type={status.state}
+        />
+      </Modal>
       <div className='customer-wishlist-title'>Wishlist</div>
-      <div className='customer-wishlist-error'>{error}</div>
       <div className='customer-wishlist-list'>
         <ProductList
           products={wishlist}

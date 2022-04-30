@@ -1,13 +1,16 @@
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useUser } from '../../Components/Contexts/UserContext'
+import Modal from '../../Components/Modal/Modal'
+import StatusModal from '../../Components/Modal/StatusModal'
 import ProductList from '../../Components/Products/ProductList'
 
 const Home = () => {
   const { user } = useUser()
 
   const [products, setProducts] = useState([])
-  const [error, setError] = useState('')
+  const [showModal, setShowModal] = useState(false)
+  const [status, setStatus] = useState({})
 
   const getProducts = async () => {
     try {
@@ -19,13 +22,15 @@ const Home = () => {
 
       const data = response.data
 
-      if (data.success) {
-        setProducts(data.products)
+      if (!data.success) {
+        setStatus({ state: 'error', message: data.message })
+        setShowModal(true)
       } else {
-        setError(data.message)
+        setProducts(data.products)
       }
     } catch (e) {
-      setError('Could not get Products')
+      setStatus({ state: 'error', message: e.response.data.message })
+      setShowModal(true)
     }
   }
 
@@ -40,12 +45,15 @@ const Home = () => {
 
       const data = response.data
 
-      if (data.success) {
+      if (!data.success) {
+        setStatus({ state: 'error', message: data.message })
       } else {
-        setError(data.message)
+        setStatus({ state: 'success', message: 'Added to Cart' })
       }
     } catch (e) {
-      setError(e.response.data.message)
+      setStatus({ state: 'error', message: e.response.data.message })
+    } finally {
+      setShowModal(true)
     }
   }
 
@@ -61,10 +69,14 @@ const Home = () => {
       const data = response.data
 
       if (!data.success) {
-        setError(data.message)
+        setStatus({ state: 'error', message: data.message })
+      } else {
+        setStatus({ state: 'success', message: 'Added to Wishlist' })
       }
     } catch (e) {
-      setError(e.response.data.message)
+      setStatus({ state: 'error', message: e.response.data.message })
+    } finally {
+      setShowModal(true)
     }
   }
 
@@ -74,8 +86,18 @@ const Home = () => {
 
   return (
     <div className='customer-home'>
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        allowClose={true}
+      >
+        <StatusModal
+          setShowModal={setShowModal}
+          message={status.message}
+          type={status.state}
+        />
+      </Modal>
       <div className='customer-home-title'>Home</div>
-      <div className='customer-home-error'>{error}</div>
       <div className='customer-home-list'>
         <ProductList
           products={products}

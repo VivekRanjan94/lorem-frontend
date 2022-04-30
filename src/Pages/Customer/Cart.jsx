@@ -1,13 +1,16 @@
 import Axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useUser } from '../../Components/Contexts/UserContext'
+import Modal from '../../Components/Modal/Modal'
+import StatusModal from '../../Components/Modal/StatusModal'
 import ProductList from '../../Components/Products/ProductList'
 
 const Cart = () => {
   const { user } = useUser()
 
   const [cart, setCart] = useState([])
-  const [error, setError] = useState('')
+  const [showModal, setShowModal] = useState(false)
+  const [status, setStatus] = useState({})
 
   const getCart = async () => {
     try {
@@ -20,13 +23,15 @@ const Cart = () => {
 
       const data = response.data
 
-      if (data.success) {
-        setCart(data.cart)
+      if (!data.success) {
+        setStatus({ state: 'error', message: 'Could not get Cart' })
+        setShowModal(true)
       } else {
-        setError('Could not get cart')
+        setCart(data.cart)
       }
     } catch (e) {
-      setError(e.response.data.message)
+      setStatus({ state: 'error', message: 'Could not get Cart' })
+      setShowModal(true)
     }
   }
 
@@ -45,13 +50,16 @@ const Cart = () => {
 
       const data = response.data
 
-      if (data.success) {
-        getCart()
+      if (!data.success) {
+        setStatus({ state: 'error', message: data.message })
       } else {
-        setError(data.message)
+        setStatus({ state: 'success', message: 'Deleted from Cart' })
+        getCart()
       }
     } catch (e) {
-      setError(e.response.data.message)
+      setStatus({ state: 'error', message: e.response.data.message })
+    } finally {
+      setShowModal(true)
     }
   }
 
@@ -66,13 +74,16 @@ const Cart = () => {
 
       const data = response.data
 
-      if (data.success) {
-        getCart()
+      if (!data.success) {
+        setStatus({ state: 'error', message: data.message })
       } else {
-        setError(data.message)
+        setStatus({ state: 'success', message: 'Moved to Wishlist' })
+        getCart()
       }
     } catch (e) {
-      setError(e.response.data.message)
+      setStatus({ state: 'error', message: e.response.data.message })
+    } finally {
+      setShowModal(true)
     }
   }
 
@@ -84,20 +95,33 @@ const Cart = () => {
         withCredentials: true,
       })
 
-      if (data.success) {
-        getCart()
+      if (!data.success) {
+        setStatus({ state: 'error', message: 'Could not place order' })
       } else {
-        setError(data.message)
+        setStatus({ state: 'success', message: 'Order Placed Successfully' })
+        getCart()
       }
     } catch (e) {
-      setError(e.response.data.message)
+      setStatus({ state: 'error', message: 'Could not place order' })
+    } finally {
+      setShowModal(true)
     }
   }
 
   return (
     <div className='customer-cart'>
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        allowClose={true}
+      >
+        <StatusModal
+          setShowModal={setShowModal}
+          message={status.message}
+          type={status.state}
+        />
+      </Modal>
       <div className='customer-cart-title'>Cart</div>
-      <div className='customer-cart-error'>{error}</div>
       <div className='customer-cart-list'>
         <ProductList
           products={cart}
